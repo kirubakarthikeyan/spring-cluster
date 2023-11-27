@@ -14,8 +14,10 @@ spring-cluster/
 ```
 
 - `demo` - contains the sample spring-boot java application
-- `infra/kubernetes/application` - contains kubernetes manifests for demo app
-- `infra/kubernetes/mysql` - contains kubernetes manifests for mysql
+- `infra/kubernetes/application` - k8s manifests for demo app
+- `infra/kubernetes/mysql-cluster` - k8s manifests for mysql cluster
+- `infra/kubernetes/mysql-router` - k8s manifests for mysql router
+- `infra/kubernetes/ingress` - k8s manifests for ingress
 - `infra/terraform` contains terraform files for provisioning a kubernetes cluster in google cloud platform
 
 ### Prerequisites
