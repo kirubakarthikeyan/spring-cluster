@@ -1,5 +1,6 @@
 ### Project structure
 
+```
 spring-cluster/
 ├─ demo/
 ├─ infra/
@@ -10,6 +11,7 @@ spring-cluster/
 | │ ├─ application
 │ ├─ terraform
 ├─ README.md
+```
 
 - `demo` - contains the sample spring-boot java application
 - `infra/kubernetes/application` - contains kubernetes manifests for demo app
