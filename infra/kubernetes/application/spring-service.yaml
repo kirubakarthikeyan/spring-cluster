@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-service
+  namespace: default
+spec:
+  selector:
+    app.kubernetes.io/name: spring-application
+  type: NodePort
+  ports:
+    - name: spring-service
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30007
