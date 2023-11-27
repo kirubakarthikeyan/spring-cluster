@@ -26,21 +26,21 @@ spec:
             - name: MYSQL_HOST
               value: "mysql-router-service"
             - name: MYSQL_USERNAME
-              value: "root"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: username
             - name: MYSQL_PORT
               value: "6446"
             - name: MYSQL_PASSWORD
-              value: "Password$123456"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
           image: docker.io/springsandbox/demo:v0.5beta
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
               name: http
               protocol: TCP
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 8080
-          #   initialDelaySeconds: 10
-          #   periodSeconds: 10
-          #   timeoutSeconds: 2
+          #TODO:// Add liveness probe and readiness probe here

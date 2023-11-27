@@ -73,20 +73,11 @@ module "gke" {
   node_pools = [
     {
       name         = "node-pool"
-      machine_type = "e2-medium"
+      machine_type = "n1-standard-4"
       auto_upgrade = true
       min_count    = 1
-      max_count    = 2
+      max_count    = 3
       disk_size_gb = 30
     },
   ]
 }
-
-
-# <!-- To view all users -->
-
-# curl http://174.138.121.225/users/all
-
-# <!-- To add a user -->
-
-# curl http://174.138.121.225/demo/add -d name=Second -d email=someemail@someemailprovider.com

@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: mysql-router
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: mysql-router
@@ -31,7 +31,10 @@ spec:
             - name: MYSQL_USER
               value: "root"
             - name: MYSQL_PASSWORD
-              value: "Password$123456"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
             - name: MYSQL_INNODB_CLUSTER_MEMBERS
               value: "2"
           image: mysql/mysql-router:8.0.28

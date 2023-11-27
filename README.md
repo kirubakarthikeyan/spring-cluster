@@ -1,3 +1,7 @@
+### Architecture
+
+![](arch.png)
+
 ### Project structure
 
 ```
@@ -76,6 +80,10 @@ Install the necessary command line tools
 
    ```
    kubectl get statefulset --watch
+
+   # output: wait until the pods are ready
+   NAME            READY   AGE
+   mysql-cluster   2/2     30s
    ```
 
 ### Configuring group replication
@@ -206,14 +214,26 @@ Install the necessary command line tools
 
 ### Deploying ingress
 
-1. Apply `infra/kubernetes/application` via kubectl
+1. Deploy nginx-ingress controller
+
+   ```
+   # For providing permissions
+   kubectl create clusterrolebinding cluster-admin-binding \
+      --clusterrole cluster-admin \
+      --user $(gcloud config get-value account)
+
+   # Deploy ingress controller
+   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+   ```
+
+2. Apply `infra/kubernetes/application` via kubectl
 
    ```
    cd infra/kubernetes
    kubectl apply -f ./ingress
    ```
 
-2. Get the external ip of our ingress service to view application
+3. Get the external ip of the load-balancer to view application
 
    ```
    kubectl get svc
@@ -223,12 +243,12 @@ Install the necessary command line tools
 
 1. Send a http get request for getting all the users
 
-```
-  curl http://<external-load-balancer-ip>/users/all
-```
+   ```
+   curl http://<external-load-balancer-ip>/users/all
+   ```
 
 2. Send a http post request for adding a user
 
-```
-  curl http://<external-load-balancer-ip>/demo/add -d name=Second -d email=someemail@someemailprovider.com
-```
+   ```
+   curl http://<external-load-balancer-ip>/demo/add -d name=Second -d email=someemail@someemailprovider.com
+   ```
