@@ -33,6 +33,10 @@ Install the necessary command line tools
 3. [gcloud SDK](https://cloud.google.com/sdk/docs/install)
 4. [kubectl cli](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
+### Building and pushing container image to docker hub
+
+   Work in progress
+
 ### Provisioning kubernetes cluster in google cloud
 
 1. Enable the **Compute Engine API & Kubernetes Engine API** ƒor the google cloud account
