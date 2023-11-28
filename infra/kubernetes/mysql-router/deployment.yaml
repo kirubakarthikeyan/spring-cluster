@@ -49,14 +49,14 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 6446
-            initialDelaySeconds: 150
+            initialDelaySeconds: 40
             periodSeconds: 30
             timeoutSeconds: 30
             failureThreshold: 60
           livenessProbe:
             tcpSocket:
               port: 6446
-            initialDelaySeconds: 150
+            initialDelaySeconds: 40
             periodSeconds: 30
             timeoutSeconds: 30
             failureThreshold: 60

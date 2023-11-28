@@ -91,18 +91,7 @@ Install the necessary command line tools
 1. For letting our MySQL pods connect to the cluster, use the following command:
 
    ```
-    POD_ORDINAL_START=${1:-0}
-    POD_ORDINAL_END=${1:-1}
-    for i in $(seq ${POD_ORDINAL_START} ${POD_ORDINAL_END}); do
-      echo "Configuring pod mysql-cluster/mysql-cluster-${i}"
-      cat <<'  EOF' | kubectl exec -i mysql-cluster-${i} -- bash -c 'mysql -uroot -proot --password=${MYSQL_ROOT_PASSWORD}'
-    INSTALL PLUGIN group_replication SONAME 'group_replication.so';
-    RESET PERSIST IF EXISTS group_replication_ip_allowlist;
-    RESET PERSIST IF EXISTS binlog_transaction_dependency_tracking;
-    SET @@PERSIST.group_replication_ip_allowlist = 'mysql-headless-service.default.svc.cluster.local';
-    SET @@PERSIST.binlog_transaction_dependency_tracking = 'WRITESET';
-      EOF
-    done
+   sh scripts/setup-ip-allow-list.sh
    ```
 
 2. Connect to MySQL Shell on the Pod `mysql-cluster-0`
@@ -122,11 +111,12 @@ Install the necessary command line tools
    The output is similar to the following:
 
    ```
-    +-------------+
-    | @@server_id |
-    +-------------+
-    |          21 |
-    +-------------+
+   +--------------------------------------------------+
+   | @@group_replication_ip_allowlist                 |
+   +--------------------------------------------------+
+   | mysql-headless-service.default.svc.cluster.local |
+   +--------------------------------------------------+
+   1 row in set (0.0004 sec)
    ```
 
 4. Configure each instance for MySQL InnoDB Cluster usage
@@ -182,6 +172,12 @@ Install the necessary command line tools
    SELECT * FROM loan;
    ```
 
+10. Create database `springdb` required for the sample application
+
+    ```
+    create database springdb;
+    ```
+
 ### Deploying mysql router:
 
 1. Apply `infra/kubernetes/mysql-router` via kubectl
@@ -236,7 +232,7 @@ Install the necessary command line tools
 3. Get the external ip of the load-balancer to view application
 
    ```
-   kubectl get svc
+   kubectl get svc -n ingress-nginx
    ```
 
 ### Test endpoints
