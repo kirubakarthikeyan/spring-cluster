@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Build and Push application Docker image
           command: |
-            git clone https://github.com/spring-petclinic/spring-petclinic-angular.git
+            git clone https://github.com/kirubakarthikeyan/spring-petclinic-angular.git
             cd ./spring-petclinic-angular
             TAG=v$CIRCLE_BUILD_NUM
             docker build -t $DOCKERHUB_USERNAME/petclinic_frontend:$TAG .
