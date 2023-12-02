@@ -1,0 +1,16 @@
+version: 3
+jobs:
+  build_frontend:
+    docker:
+      - image: cimg/base:2022.09
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - run:
+          name: Build and Push application Docker image
+          command: |
+            TAG=v$CIRCLE_BUILD_NUM
+            docker build -t $DOCKERHUB_USERNAME/petclinic-frontend:$TAG .
+            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+            docker push $DOCKERHUB_USERNAME/petclinic-frontend:$TAG
