@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Build and push backend application image
           command: |
-            git clone https://github.com/spring-petclinic/spring-petclinic-rest.git
+            git clone https://github.com/kirubakarthikeyan/spring-petclinic-rest.git
             cd ./spring-petclinic-rest
             ./mvnw clean install
             TAG=v$CIRCLE_BUILD_NUM
