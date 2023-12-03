@@ -10,7 +10,7 @@ spec:
   source:
     path: kubernetes
     repoURL: "https://github.com/kirubakarthikeyan/spring-cluster"
-    targetRevision: master
+    targetRevision: main
   project: default
   syncPolicy:
     automated:
