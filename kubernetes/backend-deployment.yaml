@@ -22,7 +22,7 @@ spec:
             limits:
               cpu: "300m"
               memory: "512Mi"
-          image: docker.io/springsandbox/petclinic_backend:v12
+          image: docker.io/springsandbox/petclinic_backend
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9966
