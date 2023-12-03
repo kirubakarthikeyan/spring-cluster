@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: spring-service
+  name: frontend-service
   namespace: default
 spec:
   selector:
-    app.kubernetes.io/name: spring-application
+    app.kubernetes.io/name: frontend
   type: ClusterIP
   ports:
-    - name: spring-service
+    - name: frontend-service
       protocol: TCP
       port: 8080
       targetPort: 8080

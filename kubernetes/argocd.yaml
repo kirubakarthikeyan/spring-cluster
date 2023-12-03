@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend-argocd
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: "https://kubernetes.default.svc"
+  source:
+    path: kubernetes
+    repoURL: "https://github.com/kirubakarthikeyan/spring-cluster"
+    targetRevision: master
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false

@@ -11,6 +11,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: spring-service
+                name: frontend-service
                 port:
                   number: 8080
+          - path: /petclinic
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 9966
