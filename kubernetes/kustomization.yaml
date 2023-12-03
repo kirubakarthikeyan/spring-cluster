@@ -7,6 +7,8 @@ resources:
 - backend-service.yaml
 namespace: default
 images:
+- newName: docker.io/springsandbox/petclinic_backend
+  newTag: v33
 - name: docker.io/springsandbox/petclinic_backend
   newName: docker.io/springsandbox/petclinic_backend
   newTag: v12
