@@ -8,7 +8,7 @@ resources:
 namespace: default
 images:
 - name: docker.io/springsandbox/petclinic_backend
-  newTag: v35
+  newTag: v37
 - name: docker.io/springsandbox/petclinic_frontend
   newName: docker.io/springsandbox/petclinic_frontend
   newTag: v4
